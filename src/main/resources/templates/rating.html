@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <title th:text="${title}"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <header th:insert="blocks/header :: header"></header>
+
+  <main>
+    <p th:text="'Добро вожаловать на ' + ${title} + ' пользователь'"></p>
+    <div class="container">
+      <h1>Рейтинг</h1>
+      <div th:each="el : ${posts}">
+        <h3 th:text="${el.title}"></h3>
+        <p th:text="${el.anons}"></p>
+        <a th:href="'/raiting/' +${el.id}">Детальнее</a>
+      </div>
+    </div>
+  </main>
+
+  <footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>
+
