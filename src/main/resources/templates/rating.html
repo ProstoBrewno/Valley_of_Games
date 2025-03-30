@@ -12,10 +12,13 @@
     <p th:text="'Добро вожаловать на ' + ${title} + ' пользователь'"></p>
     <div class="container">
       <h1>Рейтинг</h1>
-      <div th:each="el : ${posts}">
+      <div th:each="el : ${users}">
+        <h3 th:text="${el.username}"></h3>
+        <p th:text="${el.email}"></p>
+      </div>
+      <div th:each="el : ${games}">
         <h3 th:text="${el.title}"></h3>
-        <p th:text="${el.anons}"></p>
-        <a th:href="'/raiting/' +${el.id}">Детальнее</a>
+        <p th:text="${el.genre}"></p>
       </div>
     </div>
   </main>
