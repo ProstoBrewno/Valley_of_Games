@@ -1,10 +1,7 @@
 package com.websites.Valley_of_Games.controllers;
 
-
-import com.websites.Valley_of_Games.models.Game;
-import com.websites.Valley_of_Games.models.User;
-import com.websites.Valley_of_Games.repo.GameRepository;
-import com.websites.Valley_of_Games.repo.UserRepository;
+import com.websites.Valley_of_Games.models.*;
+import com.websites.Valley_of_Games.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,16 +14,37 @@ public class RatingController {
     private UserRepository userRepository;
     @Autowired
     private GameRepository gameRepository;
+    @Autowired
+    private GameScoresRepository gameScoresRepository;
+    @Autowired
+    private AchievementRepository achievementRepository;
+    @Autowired
+    private GameReviewRepository gameReviewRepository;
+    @Autowired
+    private UserAchievementRepository userAchievementRepository;
 
     @GetMapping("/rating")
-    public String raiting (Model model) {
+    public String rating(Model model) {
         Iterable<User> users = userRepository.findAll();
         model.addAttribute("users", users);
 
         Iterable<Game> games = gameRepository.findAll();
         model.addAttribute("games", games);
 
-        return "rating";
-    }
+        Iterable<GameScores> gameScores = gameScoresRepository.findAll();
+        model.addAttribute("gameScores", gameScores);
 
+        Iterable<Achievement> achivements = achievementRepository.findAll();
+        model.addAttribute("achivements", achivements);
+
+        Iterable<GameReview> gameReviews = gameReviewRepository.findAll();
+        model.addAttribute("gameReviews" , gameReviews);
+
+        Iterable<UserAchievement> userAchievements = userAchievementRepository.findAll();
+        model.addAttribute("userAchievement", userAchievements);
+
+        return "rating";
+
+
+    }
 }
