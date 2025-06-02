@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tower Blocks Game</title>
+    <link rel="stylesheet" th:href="@{/css/TowerBloks.css}">
+</head>
+<body>
+<div id="container">
+    <div id="game"></div>
+    <div id="score">0</div>
+    <div id="instructions">Кликните, чтобы разместить блок</div>
+    <div class="game-over">
+        <h2>Игра окончена</h2>
+        <p>Вы отлично справились, вы лучший.</p>
+        <p>Кликните, чтобы начать заново</p>
+    </div>
+    <div class="game-ready">
+        <div id="start-button">Начать</div>
+        <div></div>
+    </div>
+</div>
+
+<!-- Внешние библиотеки -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+
+<!-- Локальные скрипты -->
+<script th:src="@{/js/TowerBloks.js}"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${title != null} ? ${title} : 'Долина игр'">Долина игр</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<header>
+  <div class="logo">
+    <span class="top">ДОЛИНА</span>
+    <span class="bottom">ИГР</span>
+  </div>
+  <div class="header-buttons">
+    <button class="login-btn">Авторизация</button>
+    <button class="rating-btn">Рейтинг</button>
+    <div class="toggleWrapper">
+      <input type="checkbox" class="dn" id="dn" />
+      <label for="dn" class="toggle">
+        <span class="toggle__handler">
+          <span class="crater crater--1"></span>
+          <span class="crater crater--2"></span>
+          <span class="crater crater--3"></span>
+        </span>
+        <span class="star star--1"></span>
+        <span class="star star--2"></span>
+        <span class="star star--3"></span>
+        <span class="star star--4"></span>
+        <span class="star star--5"></span>
+        <span class="star star--6"></span>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Модальное окно библиотеки игр -->
+  <div class="library-overlay">
+    <div class="library-header">
+      <img th:src="@{/images/Close.svg}" alt="Закрыть" class="library-icon" />
+      <h2 class="library-title">Библиотека игр</h2>
+    </div>
+
+    <div class="games-carousel">
+      <div class="game-card" th:each="game : ${games}">
+        <img th:src="@{'/images/' + ${game.image}}" th:alt="${game.name}" class="game-image" />
+        <h3 class="game-title" th:text="${game.name}">Тестовая игра</h3>
+        <p class="game-description" th:text="${game.description}">Проверка отображения карточки</p>
+        <a th:href="@{'/' + ${game.link}}"><button class="play-button">Играть</button></a>
+      </div>
+    </div>
+  </div>
+  <!-- Модальное окно "Об авторах" -->
+  <div class="authors-overlay">
+    <div class="authors-content">
+      <img th:src="@{/images/Close.svg}" alt="Закрыть" class="authors-close" />
+      <h2 class="authors-title">Об авторах</h2>
+      <div class="authors-cards">
+        <div class="author-card" th:each="author : ${authors}">
+          <div class="author-image-container">
+            <img th:src="@{'/images/' + ${author.image}}" th:alt="${author.name}" class="author-image" />
+          </div>
+          <h3 class="author-name" th:text="${author.name}">Имя автора</h3>
+          <p class="author-description" th:text="${author.role}">Роль автора</p>
+          <a th:href="${author.contactLink}" target="_blank">
+            <button class="author-button">Написать</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Модальное окно "Авторизация" -->
+  <div class="auth-overlay">
+    <div class="auth-header">
+      <img th:src="@{/images/Close.svg}" alt="Закрыть" class="auth-close" />
+    </div>
+
+    <div class="auth-modal">
+      <div class="auth-container">
+        <input type="checkbox" id="auth-chk" aria-hidden="true" />
+
+        <div class="signup">
+          <form th:action="@{/register}" method="post">
+            <label for="auth-chk" aria-hidden="true">Регистрация</label>
+            <input type="text" name="username" placeholder="Имя пользователя" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Пароль" required />
+            <input type="password" name="confirmPassword" placeholder="Повторите пароль" required />
+            <button type="submit" class="authorization-button">Зарегистрироваться</button>
+          </form>
+        </div>
+
+        <div class="login">
+          <form th:action="@{/login}" method="post">
+            <label for="auth-chk" aria-hidden="true">Вход</label>
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Пароль" required />
+            <button type="submit" class="authorization-button-enter">Войти</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно профиля -->
+  <!-- <div id="modal" class="modal-overlay">
+      <div class="modal-container">
+          <div class="left-panel">
+              <div class="left-content">
+                <h1 class="profile-title">Профиль</h1>
+                <div class="avatar-container">
+                  <img src="images/profile.svg" alt="Аватар" class="main-avatar">
+                  <div class="avatar-overlay">
+                    <img src="images/edit.svg" alt="Иконка" class="overlay-icon">
+                  </div>
+
+                </div>
+                <div class="input-field">
+                    <input type="text" placeholder="">
+                    <img src="images/pencil.svg" alt="Иконка" class="input-icon">
+                </div>
+                <div class="input-field">
+                    <input type="text" placeholder="">
+                    <img src="images/pencil.svg" alt="Иконка" class="input-icon">
+                </div>
+                <div class="input-field">
+                    <input type="text" placeholder="">
+                    <img src="images/eye-closed.svg" alt="Иконка" class="input-icon">
+                </div>
+                <button class="save-btn">Сохранить</button>
+              </div>
+          </div>
+          <div class="right-panel">
+              <div class="right-content">
+                  <h1 class="achievements-title">ЛИЧНЫЕ ДОСТИЖЕНИЯ</h1>
+
+                  <table class="achievements-table">
+                      <thead>
+                          <tr>
+                              <th>НАЗВАНИЕ ИГРЫ</th>
+                              <th>МЕСТО</th>
+                              <th>ПОБЕДЫ</th>
+                              <th>ПОРАЖЕНИЯ</th>
+                              <th>ОЧКИ</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>Крестики-нолики</td>
+                              <td>1</td>
+                              <td>15</td>
+                              <td>2</td>
+                              <td>1450</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div> -->
+  <!-- Модальное окно Рейтинг -->
+  <div id="modal-rating" class="modal-overlay-rating" th:style="${showRating} ? '' : 'display: none'">
+    <div class="rating-header">
+      <img th:src="@{/images/Close.svg}" alt="Закрыть" class="rating-close" />
+    </div>
+    <div class="modal-container-rating">
+      <div class="left-panel-rating">
+        <div class="left-content-rating">
+          <h1 class="profile-title-rating">Игра</h1>
+          <button class="btn-play">Крестики-нолики</button>
+        </div>
+      </div>
+      <div class="right-panel-rating">
+        <div class="right-content-rating">
+          <h1 class="achievements-title-rating">Список лидеров</h1>
+          <table class="achievements-table-rating">
+            <thead>
+            <tr>
+              <th>МЕСТО</th>
+              <th>ОЧКИ</th>
+              <th>Имя</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="leader, stat : ${leaders}">
+              <td th:text="${stat.count}">1</td>
+              <td th:text="${leader.score}">19800</td>
+              <td th:text="${leader.name}">Иванов Иван Иванович</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-icons left">
+    <img th:src="@{/images/VK.svg}" alt="ВКонтакте" />
+    <img th:src="@{/images/TG.svg}" alt="Телеграм" />
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-icons right">
+    <img th:src="@{/images/info.svg}" alt="Информация" />
+    <img th:src="@{/images/smile.svg}" alt="О нас" class="emotion" />
+  </div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Современный Тетрис</title>
+
+    <!-- Подключение CSS с Thymeleaf -->
+    <link rel="stylesheet" th:href="@{/css/Tetris.css}">
+</head>
+<body>
+<div class="game-container">
+    <div class="game-board">
+        <div class="grid" id="grid"></div>
+        <div class="game-over" id="gameOver">
+            <h2>Игра Окончена</h2>
+            <button id="restartButton">Играть снова</button>
+        </div>
+    </div>
+
+    <div class="game-info">
+        <h1>ТЕТРИС</h1>
+
+        <div class="info-panel">
+            <h2>Следующая фигура:</h2>
+            <div class="next-piece">
+                <div class="next-piece-grid" id="nextPieceGrid"></div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <h2>Статистика</h2>
+            <div class="score-display">Очки: <span id="score">0</span></div>
+            <div class="score-display">Уровень: <span id="level">1</span></div>
+            <div class="score-display">Линии: <span id="lines">0</span></div>
+        </div>
+
+        <div class="info-panel">
+            <h2>Управление</h2>
+            <div class="controls">
+                <button id="leftBtn">← Влево</button>
+                <button id="rotateBtn">Повернуть</button>
+                <button id="rightBtn">Вправо →</button>
+                <button id="downBtn">Вниз ↓</button>
+                <button id="dropBtn">Бросить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Подключение JS с Thymeleaf -->
+<script th:src="@{/js/Tetris.js}"></script>
+</body>
+</html>

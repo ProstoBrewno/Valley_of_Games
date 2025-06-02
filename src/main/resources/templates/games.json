@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Крестики - нолики",
+    "description": "Простая игра, с целью собрать три в ряд",
+    "image": "game1.svg",
+    "link": "game1.html"
+  },
+  {
+    "id": 2,
+    "title": "PAC - MAN",
+    "description": "Управляет персонажем и собирай точки",
+    "image": "game2.svg",
+    "link": "game2.html"
+  },
+  {
+    "id": 3,
+    "title": "построить маяк",
+    "description": "Размещай блоки и не дай кораблю разбиться",
+    "image": "game3.svg",
+    "link": "game4.html"
+  },
+  {
+    "id": 4,
+    "title": "Сапер",
+    "description": "Открой все клетки на поле и избегай мин",
+    "image": "game4.svg",
+    "link": "game4.html"
+  },
+  {
+    "id": 5,
+    "title": "Тетрис",
+    "description": "Вращай и располагай падающие блоки на поле",
+    "image": "game5.svg",
+    "link": "game5.html"
+  }
+]

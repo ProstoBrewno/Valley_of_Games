@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пакмен</title>
+    <link rel="stylesheet" th:href="@{/css/PacMan.css}">
+    <style></style>
+</head>
+<body>
+<div id="score">Очки: 0</div>
+<div id="game-board">
+    <div id="pacman"></div>
+</div>
+<button id="start-btn">Начать</button>
+
+<script th:src="@{/js/PacMan.js}"></script>
+</body>
+</html>
